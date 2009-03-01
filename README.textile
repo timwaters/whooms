@@ -1,4 +1,4 @@
-h1. WhooMS : Ruby, Mapserver mini WMS server
+h1. WhooMS : Sinatra, Ruby, Mapserver mini WMS server
 
 h2. Installation
 
