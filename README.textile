@@ -1,0 +1,18 @@
+h1. WhooMS : Ruby, Mapserver mini WMS server
+
+h2. Installation
+
+You need :
+* Sinatra >= 0.9.1 for use of send_data method
+* Mapscript
+
+Any configurations you can change in whooms.rb
+
+h2. Usage
+* For people who want to serve just the one image and don't want to go through the palaver of setting up their own mapserver.
+* Find a geotiff (ideally in epsg:4326 projection), upload it, and you will get a WMS link, and a permalink to that page.
+* Use the WMS link in your favourite WMS viewer / openlayers / JOSM / GoogleEarth e.t.c.
+
+h2. Examples
+
+* 
