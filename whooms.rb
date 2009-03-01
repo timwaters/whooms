@@ -97,7 +97,7 @@ Files Uploaded So Far <%= @count %> <br /> <br />
 <%= yield %>
 <hr />
 <p>About: Made with Sinatra, Ruby, Mapserver Mapscript by Tim Waters tim@geothings.net <br />
-Code available at:</p>
+Code available at: <a href="http://github.com/timwaters/whooms">github</a></p>
 </body>
 </html>
 
