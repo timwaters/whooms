@@ -109,7 +109,7 @@ module Sinatra
     # Deprecated. Use the #attachment helper and return the data as a String or
     # Array.
     def send_data(data, options={})
-      sinatra_warn "The 'send_data' method is deprecated. use attachment, status, content_type, etc. helpers instead."
+      #sinatra_warn "The 'send_data' method is deprecated. use attachment, status, content_type, etc. helpers instead."
 
       status       options[:status]   if options[:status]
       attachment   options[:filename] if options[:disposition] == 'attachment'
