@@ -8,6 +8,10 @@ def map_directory
  "maps/"
 end
 
+def uploads_directory
+  "uploads/"
+end
+
 def count_files
  count = Dir.entries(map_directory).size - 2
 end
@@ -20,12 +24,12 @@ end
 post '/upload' do
   @map = params[:file][:filename]
   temp_file = params[:file][:tempfile]
-  FileUtils.mv(temp_file.path, File.join(map_directory, @map))
+  FileUtils.mv(temp_file.path, File.join(uploads_directory, @map))
   @count = count_files
   if File.extname(@map).downcase == ".tif" || File.extname(@map).downcase == ".tiff"
     @msg = "Image saved!"
   else
-    FileUtils.rm(File.join(map_directory, @map))
+    FileUtils.rm(File.join(uploads_directory, @map))
     @msg = "File wasn't a geotiff (with .tif or .tiff extension), so wasn't saved."
   end
    erb :show
@@ -65,7 +69,7 @@ get '/wms' do
   raster = Mapscript::LayerObj.new(mapsv)
   raster.name = "image"
   raster.type = Mapscript::MS_LAYER_RASTER;
-  raster.data = File.join(map_directory, @map)
+  raster.data = File.join(uploads_directory, @map)
 
   raster.status = Mapscript::MS_ON
   raster.dump = Mapscript::MS_TRUE
