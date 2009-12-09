@@ -64,7 +64,7 @@ get '/wms' do
   ows.setParameter("COVERAGE", "image")
   mapsv = Mapscript::MapObj.new(File.join(map_directory, '/wms.map'))
   mapsv.applyConfigOptions
-  mapsv.setMetaData("wms_onlineresource",   "http://" + request.host + "/wms/#{@map}")
+  mapsv.setMetaData("wms_onlineresource",   "http://" + request.host + "/wms?layer=#{@map}")
 
   raster = Mapscript::LayerObj.new(mapsv)
   raster.name = "image"
