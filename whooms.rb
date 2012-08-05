@@ -13,7 +13,7 @@ def uploads_directory
 end
 
 def count_files
- count = Dir.entries(map_directory).size - 2
+ count = Dir.entries(uploads_directory).size - 2
 end
 
 get '/' do
