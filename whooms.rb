@@ -1,5 +1,4 @@
 #whooms.rb
-$:.unshift File.dirname(__FILE__) + '/sinatra/sinatra/lib' #sinatra 0.9.1 has send_data
 require 'rubygems'
 require 'sinatra'
 require 'mapscript'
@@ -74,6 +73,7 @@ get '/wms' do
   raster.status = Mapscript::MS_ON
   raster.dump = Mapscript::MS_TRUE
   raster.metadata.set('wcs_formats', 'GEOTIFF')
+  raster.metadata.set('wms_enable_request', '*')
   raster.metadata.set('wms_title', ("wms from whooms "+@map))
   raster.metadata.set('wms_srs', 'EPSG:4326')
   raster.debug= Mapscript::MS_TRUE
@@ -83,12 +83,16 @@ get '/wms' do
   content_type = Mapscript::msIO_stripStdoutBufferContentType || "text/plain"
   result_data = Mapscript::msIO_getStdoutBufferBytes
 
-  send_data result_data, :type => content_type, :disposition => "inline"
+  response.headers['Content-Type']= "image/png"
+  response.headers['disposition'] = 'inline'
+  response.write result_data
+  
+  
   Mapscript::msIO_resetHandlers
 end
 
 
-use_in_file_templates!
+#use_in_file_templates!
 
 __END__
 
